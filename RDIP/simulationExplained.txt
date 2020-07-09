@@ -1,0 +1,16 @@
+Experiment
+1. Drop-down box for (Select Language).
+2.Here we have options in language like "English" and "Hindi", we can select anyone.
+3.If we click on "English" option it will the form a jumbled sentence in english and with a message "Form a sentence (Declarative or Interrogative or any other type) from the given words
+(select the buttons in proper order)".
+4.Each jumbled word is presented in button type.
+5.By clicking each button , it form a line below with a message "Formed Sentence(after selecting words):" and each button will disappeared in jumbled sentence.
+6.After selecting all the buttons , its shows below other two buttons i.e "Re-from the sentence" and "Check the correctness of this sentene".
+7.The "Re-from the sentence" button is used to go back to jumbled word sentence. To re-arrange the sentene.
+8.The "Check the correctness of this sentence" button is used to check the formed sentence is correct or not.
+9.If the Formed Sentence is correct, its shows a "Right answer!!!" text in green color at below "Check the correctness of this sentene".
+10.If the Formed Sentence is wrong, its shows a "Wrong answer!!!" text in red color at below "Check the correctness of this sentene" and also it display the "Get Correct Sentence" button.
+11.By clicking the "Get Correct Sentence" button it shows all correct formed sentences that belongs to jumbled english words in buttons. 
+12. After clicking the "Get Correct Sentence" button, the "Hide the correct Sentence" button will appear which is used to hide the Formed Sentences that displayed.
+13.If you click the "Hide the correct Sentence" button, it will generate "Get Answers" button.
+14.If you click the "Get Answers" button it performs same as the "Get Correct Sentence" button.
