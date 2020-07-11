@@ -116,6 +116,24 @@ var HindiSen7 = [
                                       "है वहाँ बड़ी सी एक किताब"
 ];
 
+function new()
+{
+    document.getElementById("description3").innerHTML= " "
+    count=0
+
+if(document.getElementById("Language1").selected)
+{
+     document.getElementById("description1").innerHTML="Form a sentence(Declarative or Interrogative or any other type)from the given words"
+     document.getElementById("description2").innerHTML="(select the buttons in proper order)"
+}
+else(document.getElementById("Language2").selected)
+ {
+     document.getElementById("description1").innerHTML="Form a sentence(Declarative or Interrogative or any other type)from the given words"
+     document.getElementById("description2").innerHTML="(select the buttons in proper order)"
+     
+}
+}
+
 
 
 
