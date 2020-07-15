@@ -110,13 +110,14 @@ let hindiSentences = [
 ];
 
 function scramble() {
-    let jumbledDiplayDiv = document.getElementById('JumbledSentence');
-    while (jumbledDiplayDiv.firstChild) {
+   let jumbledDiplayDiv = document.getElementById('JumbledSentence');
+   while (jumbledDiplayDiv.firstChild) {
     jumbledDiplayDiv.removeChild(jumbledDiplayDiv.firstChild);
   }
   document.getElementById('JumbledSentence').innerHTML = '';
   document.getElementById('Evaluation').innerHTML = '';
   document.getElementById('FormedSentence').innerHTML = '';
+  document.getElementById('CorrectAnswers').innerHTML = '';
   let language = document.getElementById('Language');
   let selectedLanguage = language.options[language.selectedIndex].value;
   if (selectedLanguage === 'English' || selectedLanguage === 'Hindi') {
@@ -136,7 +137,9 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
   document.getElementById('JumbledSentence').innerHTML = '';
   document.getElementById('Evaluation').innerHTML = '';
   document.getElementById('FormedSentence').innerHTML = '';
-   let arrayIndex = Math.floor(Math.random() * lauguageSentencesArray.length);
+  document.getElementById('CorrectAnswers').innerHTML = '';
+  document.getElementById('ReformSentence').innerHTML = '';
+  let arrayIndex = Math.floor(Math.random() * lauguageSentencesArray.length);
   let statemenrIndex = Math.floor(
     Math.random() * lauguageSentencesArray[arrayIndex].length
   );
@@ -149,5 +152,15 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
   let jumbledDiplayDiv = document.getElementById('JumbledSentence');
   let evaluationDiv = document.getElementById('Evaluation');
   let formedSentence = document.getElementById('FormedSentence');
-  
+  let correctAnswersDiv = document.getElementById('CorrectAnswers');
+  let reformSentenceDiv = document.getElementById('ReformSentence');
+  let DomButtons = [];
+  for (let index = 0; index < jumbledStatementArray.length; index++) {
+    DomButtons[index] = document.createElement('BUTTON');
+    DomButtons[index].style.margin = '0 10px';
+    DomButtons[index].innerHTML = jumbledStatementArray[index];
+    DomButtons[index].id = index;
+    let reformSentenceButton = document.createElement('BUTTON');
+    reformSentenceButton.innerHTML = 'Re-form the sentence';
+    reformSentenceButton.style.display = 'none';
 }
