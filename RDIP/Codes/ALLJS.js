@@ -184,4 +184,8 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
       ) {
         reformSentenceButton.style.display = 'block';
       }
+       if (jumbledDiplayDiv.childElementCount === 0) {
+        let evaluateButton = document.createElement('BUTTON');
+        evaluateButton.innerHTML = 'Check the correctness of this  sentence';
+        
 }
