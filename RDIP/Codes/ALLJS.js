@@ -187,5 +187,17 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
        if (jumbledDiplayDiv.childElementCount === 0) {
         let evaluateButton = document.createElement('BUTTON');
         evaluateButton.innerHTML = 'Check the correctness of this  sentence';
-        
+        evaluateButton.onclick = () => {
+          let evaluatedAnswer = document.createElement('H1');
+          if (evaluationDiv.childElementCount < 2) {
+            evaluatedAnswer.innerHTML = '';
+            if (statement.trim() === formedSentence.innerHTML.trim()) {
+              evaluatedAnswer.innerHTML = 'Right answer!!!';
+              evaluatedAnswer.style.color = '#00FF00';
+            } else {
+              evaluatedAnswer.innerHTML = 'Wrong answer!!!';
+              evaluatedAnswer.style.color = '#FF0000';
+                       }
+             }
+      }
 }
