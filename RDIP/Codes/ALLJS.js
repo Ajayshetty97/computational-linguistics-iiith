@@ -197,7 +197,9 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
             } else {
               evaluatedAnswer.innerHTML = 'Wrong answer!!!';
               evaluatedAnswer.style.color = '#FF0000';
-                       }
+                let showAnswersButton = document.createElement('BUTTON');
+              showAnswersButton.innerHTML = 'Get Correct Sentence';
+                      }
              }
       }
 }
