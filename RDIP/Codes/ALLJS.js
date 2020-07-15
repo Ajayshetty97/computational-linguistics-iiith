@@ -163,4 +163,25 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
     let reformSentenceButton = document.createElement('BUTTON');
     reformSentenceButton.innerHTML = 'Re-form the sentence';
     reformSentenceButton.style.display = 'none';
+    
+    reformSentenceButton.onclick = function () {
+      reformSentenceButton.remove();
+      createSentence(lauguageSentencesArray, statement);
+    };
+    reformSentenceDiv.appendChild(reformSentenceButton);
+    let formedSentenceHeading = document.createElement('H6');
+    formedSentenceHeading.innerHTML =
+      'Formed Sentence (after selecting words):';
+    formedSentenceHeading.style.display = 'none';
+    formedSentence.appendChild(formedSentenceHeading);
+    DomButtons[index].onclick = function () {
+      formedSentenceHeading.style.display = 'block';
+      formedSentence.innerHTML += DomButtons[index].innerHTML + ' ';
+      DomButtons[index].remove();
+      if (
+        jumbledDiplayDiv.childElementCount ===
+        statement.split(' ').length - 1
+      ) {
+        reformSentenceButton.style.display = 'block';
+      }
 }
