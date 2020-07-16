@@ -110,10 +110,10 @@ let hindiSentences = [
 ];
 
 function scramble() {
-   let jumbledDiplayDiv = document.getElementById('JumbledSentence');
-   while (jumbledDiplayDiv.firstChild) {
-    jumbledDiplayDiv.removeChild(jumbledDiplayDiv.firstChild);
-  }
+  // let jumbledDiplayDiv = document.getElementById('JumbledSentence');
+  // while (jumbledDiplayDiv.firstChild) {
+  //   jumbledDiplayDiv.removeChild(jumbledDiplayDiv.firstChild);
+  // }
   document.getElementById('JumbledSentence').innerHTML = '';
   document.getElementById('Evaluation').innerHTML = '';
   document.getElementById('FormedSentence').innerHTML = '';
@@ -163,7 +163,6 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
     let reformSentenceButton = document.createElement('BUTTON');
     reformSentenceButton.innerHTML = 'Re-form the sentence';
     reformSentenceButton.style.display = 'none';
-    
     reformSentenceButton.onclick = function () {
       reformSentenceButton.remove();
       createSentence(lauguageSentencesArray, statement);
@@ -184,7 +183,7 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
       ) {
         reformSentenceButton.style.display = 'block';
       }
-       if (jumbledDiplayDiv.childElementCount === 0) {
+      if (jumbledDiplayDiv.childElementCount === 0) {
         let evaluateButton = document.createElement('BUTTON');
         evaluateButton.innerHTML = 'Check the correctness of this  sentence';
         evaluateButton.onclick = () => {
@@ -197,9 +196,33 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
             } else {
               evaluatedAnswer.innerHTML = 'Wrong answer!!!';
               evaluatedAnswer.style.color = '#FF0000';
-                let showAnswersButton = document.createElement('BUTTON');
+              let showAnswersButton = document.createElement('BUTTON');
               showAnswersButton.innerHTML = 'Get Correct Sentence';
-                      }
-             }
+              let correctAnswers = document.createElement('H2');
+              showAnswersButton.onclick = () => {
+                if (correctAnswersDiv.childElementCount <= 2) {
+                  if (showAnswersButton.innerHTML === 'Get Correct Sentence') {
+                    correctAnswers.innerHTML = lauguageSentencesArray[
+                      arrayIndex
+                    ].join('<br>');
+                    showAnswersButton.innerHTML = 'Hide the correct Sentence';
+                  } else if (
+                    showAnswersButton.innerHTML === 'Hide the correct Sentence'
+                  ) {
+                    showAnswersButton.innerHTML = 'Get Correct Sentence';
+                    correctAnswers.innerHTML = '';
+                  }
+                }
+                correctAnswersDiv.appendChild(correctAnswers);
+              };
+              correctAnswersDiv.appendChild(showAnswersButton);
+            }
+          }
+          evaluationDiv.appendChild(evaluatedAnswer);
+        };
+        evaluationDiv.appendChild(evaluateButton);
       }
+    };
+    jumbledDiplayDiv.appendChild(DomButtons[index]);
+  }
 }
