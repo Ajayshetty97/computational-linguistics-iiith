@@ -117,6 +117,7 @@ function scramble() {
   document.getElementById('JumbledSentence').innerHTML = '';
   document.getElementById('Evaluation').innerHTML = '';
   document.getElementById('FormedSentence').innerHTML = '';
+  document.getElementById('SentenceFormed').innerHTML = '';
   document.getElementById('CorrectAnswers').innerHTML = '';
   let language = document.getElementById('Language');
   let selectedLanguage = language.options[language.selectedIndex].value;
@@ -133,16 +134,24 @@ function scramble() {
   }
 }
 
-function createSentence(lauguageSentencesArray = [], statement = '') {
+function createSentence(
+  lauguageSentencesArray = [],
+  statement = null,
+  arrayIndex = null,
+  statemenrIndex = null
+) {
   document.getElementById('JumbledSentence').innerHTML = '';
   document.getElementById('Evaluation').innerHTML = '';
   document.getElementById('FormedSentence').innerHTML = '';
+  document.getElementById('SentenceFormed').innerHTML = '';
   document.getElementById('CorrectAnswers').innerHTML = '';
   document.getElementById('ReformSentence').innerHTML = '';
-  let arrayIndex = Math.floor(Math.random() * lauguageSentencesArray.length);
-  let statemenrIndex = Math.floor(
-    Math.random() * lauguageSentencesArray[arrayIndex].length
-  );
+  if (!arrayIndex && !statemenrIndex) {
+    arrayIndex = Math.floor(Math.random() * lauguageSentencesArray.length);
+    statemenrIndex = Math.floor(
+      Math.random() * lauguageSentencesArray[arrayIndex].length
+    );
+  }
   if (!statement) {
     statement = lauguageSentencesArray[arrayIndex][statemenrIndex];
   }
@@ -152,9 +161,13 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
   let jumbledDiplayDiv = document.getElementById('JumbledSentence');
   let evaluationDiv = document.getElementById('Evaluation');
   let formedSentence = document.getElementById('FormedSentence');
+  let sentenceFormed = document.getElementById('SentenceFormed');
   let correctAnswersDiv = document.getElementById('CorrectAnswers');
   let reformSentenceDiv = document.getElementById('ReformSentence');
   let DomButtons = [];
+  let formedSentenceHeading = document.createElement('H6');
+  formedSentenceHeading.innerHTML = 'Formed Sentence (after selecting words):';
+  formedSentenceHeading.style.display = 'none';
   for (let index = 0; index < jumbledStatementArray.length; index++) {
     DomButtons[index] = document.createElement('BUTTON');
     DomButtons[index].style.margin = '0 10px';
@@ -165,17 +178,19 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
     reformSentenceButton.style.display = 'none';
     reformSentenceButton.onclick = function () {
       reformSentenceButton.remove();
-      createSentence(lauguageSentencesArray, statement);
+      createSentence(
+        lauguageSentencesArray,
+        statement,
+        arrayIndex,
+        statemenrIndex
+      );
     };
     reformSentenceDiv.appendChild(reformSentenceButton);
-    let formedSentenceHeading = document.createElement('H6');
-    formedSentenceHeading.innerHTML =
-      'Formed Sentence (after selecting words):';
-    formedSentenceHeading.style.display = 'none';
+
     formedSentence.appendChild(formedSentenceHeading);
     DomButtons[index].onclick = function () {
       formedSentenceHeading.style.display = 'block';
-      formedSentence.innerHTML += DomButtons[index].innerHTML + ' ';
+      sentenceFormed.innerHTML += DomButtons[index].innerHTML + ' ';
       DomButtons[index].remove();
       if (
         jumbledDiplayDiv.childElementCount ===
@@ -190,18 +205,23 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
           let evaluatedAnswer = document.createElement('H1');
           if (evaluationDiv.childElementCount < 2) {
             evaluatedAnswer.innerHTML = '';
-            if (statement.trim() === formedSentence.innerHTML.trim()) {
+            console.log([
+              statement.trim(),
+              statement.trim() === sentenceFormed.innerHTML.trim(),
+              sentenceFormed.innerHTML.trim()
+            ]);
+            if (statement.trim() === sentenceFormed.innerHTML.trim()) {
               evaluatedAnswer.innerHTML = 'Right answer!!!';
               evaluatedAnswer.style.color = '#00FF00';
             } else {
               evaluatedAnswer.innerHTML = 'Wrong answer!!!';
               evaluatedAnswer.style.color = '#FF0000';
               let showAnswersButton = document.createElement('BUTTON');
-              showAnswersButton.innerHTML = 'Get Correct Sentence';
+              showAnswersButton.innerHTML = 'Get Answers';
               let correctAnswers = document.createElement('H2');
               showAnswersButton.onclick = () => {
                 if (correctAnswersDiv.childElementCount <= 2) {
-                  if (showAnswersButton.innerHTML === 'Get Correct Sentence') {
+                  if (showAnswersButton.innerHTML === 'Get Answers') {
                     correctAnswers.innerHTML = lauguageSentencesArray[
                       arrayIndex
                     ].join('<br>');
@@ -209,7 +229,7 @@ function createSentence(lauguageSentencesArray = [], statement = '') {
                   } else if (
                     showAnswersButton.innerHTML === 'Hide the correct Sentence'
                   ) {
-                    showAnswersButton.innerHTML = 'Get Correct Sentence';
+                    showAnswersButton.innerHTML = 'Get Answers';
                     correctAnswers.innerHTML = '';
                   }
                 }
