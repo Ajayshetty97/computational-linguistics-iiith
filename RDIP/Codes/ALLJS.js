@@ -205,12 +205,11 @@ function createSentence(
           let evaluatedAnswer = document.createElement('H1');
           if (evaluationDiv.childElementCount < 2) {
             evaluatedAnswer.innerHTML = '';
-            console.log([
-              statement.trim(),
-              statement.trim() === sentenceFormed.innerHTML.trim(),
-              sentenceFormed.innerHTML.trim()
-            ]);
-            if (statement.trim() === sentenceFormed.innerHTML.trim()) {
+            if (
+              lauguageSentencesArray[arrayIndex].includes(
+                sentenceFormed.innerHTML.trim()
+              )
+            ) {
               evaluatedAnswer.innerHTML = 'Right answer!!!';
               evaluatedAnswer.style.color = '#00FF00';
             } else {
